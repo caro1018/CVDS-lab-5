@@ -21,6 +21,9 @@ Después de terminar el aprendizaje analice:
 
 Usando la arquitectura MVC del punto anterior (el proyecto anterior), realice una aplicación simple qué permita navegar gráficamente sobre esta API https://jsonplaceholder.typicode.com/todos/1, puede guiarse de tutoriales como https://medium.com/@nutanbhogendrasharma/consume-rest-api-in-spring-boot-web-application-354c404850f0
 
+![image](https://github.com/caro1018/CVDS-lab-5/assets/47181098/3f815ea0-d77b-4af0-9c0f-3c7e71dddd15)
+
+
 Luego de terminada esta parte responda:
 
 ¿Qué es RESTful?
