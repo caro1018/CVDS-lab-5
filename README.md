@@ -16,3 +16,27 @@ Después de terminar el aprendizaje analice:
 * ¿Cuáles son las ventajas de usar MVC?
 * ¿Qué diferencia tiene la estructura de directorios de este proyecto comparado con las de proyectos pasados (con solo maven y java EE)?
 * ¿Qué anotaciones usaste y cuál es la diferencia entre ellas?
+
+## PARTE IV. - APLICACIÓN MVC PARA CONSUMO DE SERVICIO RESTful
+
+Usando la arquitectura MVC del punto anterior (el proyecto anterior), realice una aplicación simple qué permita navegar gráficamente sobre esta API https://jsonplaceholder.typicode.com/todos/1, puede guiarse de tutoriales como https://medium.com/@nutanbhogendrasharma/consume-rest-api-in-spring-boot-web-application-354c404850f0
+
+Luego de terminada esta parte responda:
+
+¿Qué es RESTful?
+Si utilizo un framework como Boostrap CSS para qué el apartado gráfico se vea más profesional, ¿en qué capa se haría su uso?
+
+## PARTE V. - APLICACIÓN MVC JUEGO
+
+¡Llego la hora del reto! Teniendo las bases del uso del framework, cree una nueva ruta, por ejemplo /guess, y agrege formulario básico con un campo llamado "número" (guía de como crear formularios HTML https://www.w3schools.com/html/)
+
+Y vamos a implementar la lógica de nuestro juego:
+
+Se trata de un juego en línea para adivinar un número, en el que el ganador, si acierta en la primera oportunidad, recibe $100.000. Luego, por cada intento fallido, el premio se reduce en $10.000, como en los juegos de apuesta, es natural qué quede en saldos negativos.
+El número a adivinar debe ser generado en cada intento y comparado con el número qué el usuario está insertando, es un número de 1 a 10.
+Debe existir un botón de reset, qué permita al jugador iniciar de nuevo.
+La capa de controlador debe procer el número del usuario mediante método POST.
+Analice las siguientes situaciones:
+
+¿Qué pasa si abro el sitio de juegos en dos navegadores difententes?
+Si quisiera qué a cada jugador le aparecieran independientemente sus respectivos saldos. ¿Qué habría que hacer?
