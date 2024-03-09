@@ -1,6 +1,6 @@
 package com.example.servingwebcontent;
 
-public class delectus {
+public class Delectus {
 
     private Integer userId;
     private Integer id;

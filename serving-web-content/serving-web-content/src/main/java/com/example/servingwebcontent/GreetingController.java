@@ -19,7 +19,7 @@ public class GreetingController {
     @RequestMapping("/hello")
     //@ResponseBody
     private String hello() {
-        return "Hello World juan";
+        return "hello";
     }
 
     @RequestMapping("/user/{id}")
@@ -80,19 +80,19 @@ public class GreetingController {
         String uri = "https://jsonplaceholder.typicode.com/todos/1";
         RestTemplate restTemplate = new RestTemplate();
 
-        delectus myDelectus  = restTemplate.getForObject(uri, delectus.class);
+        Delectus delectus  = restTemplate.getForObject(uri, Delectus.class);
 
         //---
         ModelAndView modelAndView = new ModelAndView("delectus");
-        modelAndView.addObject("myDelectus", myDelectus);
+        modelAndView.addObject("delectus", delectus);
         //---
 
-        System.out.println("User: " + myDelectus);
+        System.out.println("User: " + delectus);
 
-        System.out.println("Userid: " + myDelectus.getUserId());
-        System.out.println("id: " + myDelectus.getId());
-        System.out.println("title: " + myDelectus.getTitle());
-        System.out.println("completed: " + myDelectus.getCompleted());
+        System.out.println("Userid: " + delectus.getUserId());
+        System.out.println("id: " + delectus.getId());
+        System.out.println("title: " + delectus.getTitle());
+        System.out.println("completed: " + delectus.getCompleted());
 
         //return "User detail page.";
         return modelAndView;
