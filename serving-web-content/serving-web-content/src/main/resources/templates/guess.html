@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Adivina el número</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<h2>Adivina el número</h2>
+
+<p>Prize: <span th:text="${guess.prize}"></span></p>
+<p>Attempts: <span th:text="${guess.attempt}"></span></p>
+
+<!--form action="#" th:action="@{/compare}" method="post"-->
+<form th:action="@{/compare}" method="post">
+    <label for="numero">Ingrese número del 1 al 10</label><br>
+    <input type="number" id="numero" name="numero">
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

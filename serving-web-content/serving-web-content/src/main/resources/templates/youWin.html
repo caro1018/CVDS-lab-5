@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>GANASTE</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<b><p th:text="|Felicitaciones ganaste un premio de $ ${prize}|"></b>
+<form action="#" th:action="@{/reset}" method="post">
+    <input type="submit" value="Reset">
+</form>
+</body>
+</html>

@@ -8,6 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class GreetingController {
+    Guess guess = new Guess();
+
     //@GetMapping("/greeting?name=Parro")
     @GetMapping("/greeting")
     public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model)
@@ -97,4 +99,52 @@ public class GreetingController {
         //return "User detail page.";
         return modelAndView;
     }
+
+
+    //----JUEGO ADIVINAR NÚMERO----begin
+    @GetMapping("/guess")
+    public String greeting(Model model)
+    {
+        model.addAttribute("guess", guess);
+
+        return "guess";
+    }
+
+    @PostMapping("/compare")
+    public String greetingCompare(@RequestParam("numero") int numero, Model model)
+    {
+        guess.setTestNumber(numero);
+        if(!guess.compare())
+        {
+            guess.fail();
+
+            model.addAttribute("attempt", guess.getAttempt());
+            model.addAttribute("prize", guess.getPrize());
+            return "redirect:/guess";
+        }
+        else
+        {
+            guess.newNumber();
+
+            model.addAttribute("prize", guess.getPrize());
+            return "youWin";
+        }
+    }
+
+    @PostMapping("/reset")
+    public String greetingReset(Model model)
+    {
+        guess.reset();
+        model.addAttribute("attempt", guess.getAttempt());
+        model.addAttribute("prize", guess.getPrize());
+        return "redirect:/guess";
+    }
+
+    @PostMapping("/youWin")
+    public String greetingYouWin(Model model)
+    {
+        model.addAttribute("prize", guess.getPrize());
+        return "youWin";
+    }
+
 }
