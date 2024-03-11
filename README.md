@@ -1,13 +1,202 @@
-### PARTE IV. - APLICACIÓN MVC PARA CONSUMO DE SERVICIO RESTful
+## PARTE III. - HACIENDO UNA APLICACIÓN WEB DINÁMICA USANDO EL PATRÓN MVC
+En este ejercicio, va a implementar una aplicación Web muy básica, haciendo uso de spring MVC.
+
+Para esto usaremos la documentación oficial de Spring con que aprenderemos las funciones básicas de este framework https://spring.io/guides/gs/serving-web-content/
+
+Seguimos el paso a paso para crear nuestra aplicación web:
+
+![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/77d41949-55ba-4ab8-9602-815c4243651e)
+
+creamos metodo get en clase controller
+
+```java
+
+    @RequestMapping("/user/{id}")
+    //@ResponseBody
+    private ModelAndView getUser(@PathVariable Integer id, Model model) {
+        //String uri = "https://jsonplaceholder.typicode.com/users/1";
+        String uri = "https://jsonplaceholder.typicode.com/users/"+ id;
+        RestTemplate restTemplate = new RestTemplate();
+
+        User user = restTemplate.getForObject(uri, User.class);
+
+        //---
+        Address address2 = user.getAddress();
+        Geo geo2 = address2.getGeo();
+        Company company2 = user.getCompany();
+
+        ModelAndView modelAndView = new ModelAndView("user");
+        modelAndView.addObject("user", user);
+        modelAndView.addObject("address", address2);
+        modelAndView.addObject("geo", geo2);
+        modelAndView.addObject("company", company2);
+        //---
+
+        System.out.println("User: " + user);
+
+        System.out.println("Userid: " + user.getId());
+        System.out.println("Name: " + user.getName());
+        System.out.println("Username: " + user.getUsername());
+        System.out.println("Email: " + user.getEmail());
+
+        Address address = user.getAddress();
+        System.out.println("Address: "
+                + address.getStreet() + ", "
+                + address.getCity() + ", "
+                + address.getZipcode()
+        );
+
+        Geo geo = address.getGeo();
+        System.out.println("Geo Lat: "
+                + geo.getLat() + ", Geo Lng: "
+                + geo.getLng()
+        );
+
+        Company company = user.getCompany();
+        System.out.println("Company: "
+                + company.getName() + ", "
+                + company.getCatchPhrase() + ", "
+                + company.getBs()
+        );
+
+        //return "User detail page.";
+        return modelAndView;
+    }
+
+```
+
+```html
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User page</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<h1>User details</h1>
+<div class = "main_container">
+    <div class="row">
+        <div class="left">User Id:</div>
+        <div class="left" th:text="${user.id}"></div>
+    </div>
+
+    <div class="row">
+        <div class="left">Name: </div>
+        <div class="left" th:text="${user.name}"></div>
+    </div>
+
+    <div class="row">
+        <div class="left">Email: </div>
+        <div class="left" th:text="${user.email}"></div>
+    </div>
+
+    <div class="row">
+        <div class="left">Address: </div>
+        <div class="left"
+             th:text="${address.street + ', ' + address.suite + ', ' + address.city + ', ' + address.zipcode}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="left">Geo: </div>
+        <div class="left" th:text="${geo.lat + ', ' + geo.lng}"></div>
+    </div>
+
+    <div class="row">
+        <div class="left">Company: </div>
+        <div class="left" th:text="${company.name + ', ' + company.bs}"></div>
+    </div>
+</div>
+</body>
+</html>
+
+```
+
+Después de terminar el aprendizaje analice:
+- ¿Por qué MVC obtiene ese nombre? (puede apoyarse de https://www.javatpoint.com/spring-mvc-tutorial) 
+- ¿Cuáles son las ventajas de usar MVC?
+- ¿Qué diferencia tiene la estructura de directorios de este proyecto comparado con las de proyectos pasados (con solo maven y java EE)?
+- ¿Qué anotaciones usaste y cuál es la diferencia entre ellas?
+- Ahora, haz el request GET http://localhost:8080/greeting usando Postman, y revisa si el body de la respuesta es igual a alguno de los archivos del proyecto. Significa eso que es un recurso web dinámico o estático?
+
+## PARTE IV. - APLICACIÓN MVC PARA CONSUMO DE SERVICIO RESTful
 Usando la arquitectura MVC del punto anterior (el proyecto anterior), realice una aplicación simple qué permita navegar gráficamente sobre esta API
 https://jsonplaceholder.typicode.com/todos/1, puede guiarse de tutoriales como https://medium.com/@nutanbhogendrasharma/consume-rest-api-in-spring-boot-web-application-354c404850f0
 
+Basados en el proyecto anterior realizamos los siguientes ajustes
+
+<p align="center">Metodo get en clase controller</p>
+
+```java
+
+@RequestMapping("/delectus")
+    //@ResponseBody
+    private ModelAndView getDelectus(Model model) {
+        String uri = "https://jsonplaceholder.typicode.com/todos/1";
+        RestTemplate restTemplate = new RestTemplate();
+
+        Delectus delectus  = restTemplate.getForObject(uri, Delectus.class);
+
+        //---
+        ModelAndView modelAndView = new ModelAndView("delectus");
+        modelAndView.addObject("delectus", delectus);
+        //---
+
+        System.out.println("User: " + delectus);
+
+        System.out.println("Userid: " + delectus.getUserId());
+        System.out.println("id: " + delectus.getId());
+        System.out.println("title: " + delectus.getTitle());
+        System.out.println("completed: " + delectus.getCompleted());
+
+        //return "User detail page.";
+        return modelAndView;
+    }
+```
+
+<p align="center">Plantilla html</p>
+
+```html
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User page</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<h1>User details</h1>
+<div class = "main_container">
+    <div class="row">
+        <div class="left">User Id:</div>
+        <div class="left" th:text="${delectus.userId}"></div>
+    </div>
+    <div class="row">
+        <div class="left">Id:</div>
+        <div class="left" th:text="${delectus.id}"></div>
+    </div>
+    <div class="row">
+        <div class="left">Title:</div>
+        <div class="left" th:text="${delectus.title}"></div>
+    </div>
+
+    <div class="row">
+        <div class="left">Completed:</div>
+        <div class="left" th:text="${delectus.completed}"></div>
+    </div>
+
+</div>
+</body>
+</html>
+
+```
+Resultado:
+        
+ ![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/e1279335-a8bb-4f39-bc6a-6155f982358c)
 
 
 Luego de terminada esta parte responda:
 - ¿Qué es RESTful?
 
-### PARTE V. - APLICACIÓN MVC JUEGO
+## PARTE V. - APLICACIÓN MVC JUEGO
 ¡Llego la hora del reto! Teniendo las bases del uso del framework, cree una nueva ruta, por ejemplo `/guess`, y agrege formulario básico con un campo llamado "número" (guía de como crear formularios HTML https://www.w3schools.com/html/)
 <p align="center">Nuevo formulario en ruta `/guess` </p>
 
