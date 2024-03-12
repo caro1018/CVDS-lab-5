@@ -1,3 +1,120 @@
+#### INTRODUCCIÓN A PROYECTOS WEB
+
+### PARTE I. - JUGANDO A SER UN CLIENTE HTTP
+Usaremos las siguientes aplicaciones como cliente HTTP
+- Postman
+- Telnet
+
+Abre la aplicación Postman, lo usaremos para hacer una solicitud a un servidor HTTP, al abrirlo indentifica qué controles de Postman corresponde a los elementos de entrada y salida de un servicio HTTP:
+
+<img width="803" alt="image" src="https://github.com/PDSW-ECI/labs/assets/4140058/49acba5d-2f26-4515-96e9-af7aa50f89d4">
+
+Has un request GET a la URL https://www.escuelaing.edu.co/es/ y verifica el body de respuesta en las opciones Pretty, Raw, Preview.
+
+<p align="center">Respuesta Pretty</p>
+
+![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/281f76d6-4777-4ae5-a77e-e7cba1c15887)
+
+<p align="center">Respuesta Raw</p>
+
+![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/9330b78b-595a-4ae0-a045-44e47e48b4da)
+
+<p align="center">Respuesta Preview</p>
+
+![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/8b8e3228-1871-4b8d-a54e-af4a92e45b92)
+
+Ahora has otro request GET al recurso https://dummyjson.com/todos, nuevamente verifica el body en varias opciones.
+
+<p align="center">Respuesta Pretty</p>
+
+![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/f07b07eb-e3e4-4896-bbd2-a91795b59675)
+
+<p align="center">Respuesta Raw</p>
+
+![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/91d82c3e-ac1b-47b2-ab8e-fa870fc27226)
+
+<p align="center">Respuesta Preview</p>
+
+![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/8e6cc429-4a15-48f0-89ce-ee3ae0948339)
+
+
+Responde las siguientes preguntas:
+- ¿Qué pasa si no envío el método correcto?
+- ¿Qué pasa si al body response HTML lo fuerzo a leerse como JSON?
+- ¿Por qué el preview de HTML no se ve igual a cuando accedo a la URL en un navegador web?
+- ¿Qué pasa si le envías un body a una solicitud GET?
+
+Como parte del laboratorio en casa (ya que en los equipos del laboratorio está bloqueado) has los dos request anteriores pero ahora usando la herramienta Telnet sobre el puerto 80.
+Telnet soporta HTTP y no HTTPS, entonces ¿Qué significa la respuesta 301 cuándo usas telnet en el puerto 80?. Si quieres obtener una respuesta exitosa, podrías hacer solicitudes al servicio HTTP http://example.com/ o usando openssl se pueden hacer request HTTPS https://www.bearfruit.org/thoughts/telnet-for-testing-ssl-https-websites/
+
+`telnet www.escuelaing.edu.co 80`
+
+![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/223d1599-5a7e-495a-8258-7d5b1e8ab982)
+
+`telnet dummyjson.com 80`
+
+![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/6f965afa-9815-46c6-9561-b0fa6fba61fc)
+
+
+
+Solicitudes con telnet online
+https://youfiles.herokuapp.com/telnetclient/
+
+## PARTE II. - CLIENT SIDE RENDERING CON REACT
+Para iniciar verifica que tengas alguna de estas herramientas:
+- NPM o YARN
+
+Verificando en terminal sería `$ npm --version`
+
+La siguiente misión es ejecutar una aplicación react localmente:
+- Abre la aplicación https://codesandbox.io/s/react-js-simple-calculator-pefmr, loguéate con GitHub y juega cambiando los parámetros como colores y duplicando las líneas del archivo App.js con tags como `<ResultComponent ...>` en la función render.
+
+Cambio de parámetros en la aplicación
+![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/6b0e0e77-22e9-4c9a-9eec-18d2fde7f093)
+
+
+- ¿Qué hace cada uno de los archivos en la aplicación?
+```
+.
+├── package.json
+├── public
+│   └── index.html
+└── src
+    ├── App.js
+    ├── components
+    │   ├── KeyPadComponent.js
+    │   └── ResultComponent.js
+    ├── index.js
+    └── styles.css
+```
+
+- Después de haber visto los cambios, vuelve a abrir la URL original https://codesandbox.io/s/react-js-simple-calculator-pefmr y sigue los siguientes pasos:
+1) Descargar código en un Zip
+2) Descomprimir el Zip en la carpeta de proyectos de software, (en ciertos PC solo funciona 7-Zip)
+
+   ![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/151c1373-42d9-4033-9eac-c5aadb42999f)
+
+3) Abrir una terminal de Git Bash en la carpeta descomprimida
+4) Instalar las dependencias con `npm install`
+
+    ![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/e3e1a327-9221-4593-bbb8-053646af20d0)
+
+5) Iniciar la aplicación con `npm start`, en algunos computadores con versiones antiguas de nodejs hay que agregar `NODE_OPTIONS=--openssl-legacy-provider npm run start`
+
+    ![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/639afd70-722b-4db9-a139-a7aa08a659df)
+
+6) Si te sale el Firewall dale click en cancelar
+7) Abrir la ruta http://localhost:3000/ en un navegador web como Firefox o Google Chrome
+   
+   ![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/cec7c95f-5639-4c49-8c2f-4531e99df027)
+
+
+**NOTA**: Si se está utilizando PowerShell en lugar de Git Bash, reemplaze el comando del punto 5 por `$env:NODE_OPTIONS='--openssl-legacy-provider' ; npm run start`
+
+Ahora, has el request GET http://localhost:3000/ usando Postman, y revisa si el body de la respuesta es igual a alguno de los archivos del proyecto. Significa eso que es un recurso web dinámico o estático?
+
+
+
 ## PARTE III. - HACIENDO UNA APLICACIÓN WEB DINÁMICA USANDO EL PATRÓN MVC
 En este ejercicio, va a implementar una aplicación Web muy básica, haciendo uso de spring MVC.
 
@@ -110,6 +227,11 @@ creamos metodo get en clase controller
 </html>
 
 ```
+
+Funcionamiento de servicio
+
+![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/7719e084-cf22-47ed-84de-5e726926e305)
+
 
 Después de terminar el aprendizaje analice:
 - ¿Por qué MVC obtiene ese nombre? (puede apoyarse de https://www.javatpoint.com/spring-mvc-tutorial) 
