@@ -530,3 +530,6 @@ Analice las siguientes situaciones:
 
     
 - Si quisiera qué a cada jugador le aparecieran independientemente sus respectivos saldos. ¿Qué habría que hacer?
+
+![image](https://github.com/caro1018/CVDS-lab-5/assets/47181098/20d97c9a-61da-4e18-9171-cfbb239bc937)
+
