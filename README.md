@@ -228,6 +228,8 @@ creamos metodo get en clase controller
 
 ```
 
+`http://localhost:8080/greeting?name=Juan_Caro`
+
 Funcionamiento de servicio
 
 ![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/7719e084-cf22-47ed-84de-5e726926e305)
@@ -310,6 +312,9 @@ Basados en el proyecto anterior realizamos los siguientes ajustes
 </html>
 
 ```
+
+`http://127.0.0.1:8080/delectus`
+
 Resultado:
         
  ![image](https://github.com/caro1018/CVDS-lab-5/assets/77819591/e1279335-a8bb-4f39-bc6a-6155f982358c)
@@ -511,6 +516,7 @@ public class Guess {
 
 ```
 
+`http://localhost:8080/guess`
 
 Analice las siguientes situaciones:
 - ¿Qué pasa si abro el sitio de juegos en dos navegadores difententes?
